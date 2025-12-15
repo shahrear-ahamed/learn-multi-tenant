@@ -7,4 +7,21 @@ export declare class TenantsService {
     findAllForUser(userId: string): Promise<Tenant[]>;
     findOne(id: string): Promise<Tenant | null>;
     addUserToTenant(tenantId: string, userId: string, role?: string): Promise<UserTenant>;
+    inviteUser(tenantId: string, email: string): Promise<{
+        id: string;
+        role: string;
+        tenantId: string;
+        userId: string;
+    }>;
+    getMembers(tenantId: string): Promise<({
+        user: {
+            id: string;
+            email: string;
+        };
+    } & {
+        id: string;
+        role: string;
+        tenantId: string;
+        userId: string;
+    })[]>;
 }

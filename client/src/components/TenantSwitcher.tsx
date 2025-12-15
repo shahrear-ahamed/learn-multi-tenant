@@ -1,10 +1,9 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
+import { useRouter } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
+import { Button } from './ui/button'
+import { Input } from './ui/input'
+import { Label } from './ui/label'
+import { api } from '@/lib/api'
 import {
   Select,
   SelectContent,
@@ -12,12 +11,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { api } from '@/lib/api'
-import { useRouter } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
-import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { Label } from './ui/label'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 
 interface Tenant {
   id: string
@@ -26,7 +26,7 @@ interface Tenant {
 }
 
 export function TenantSwitcher() {
-  const [tenants, setTenants] = useState<Tenant[]>([])
+  const [tenants, setTenants] = useState<Array<Tenant>>([])
   const [activeTenant, setActiveTenant] = useState<string>('')
   const [newTenantName, setNewTenantName] = useState('')
   const [newTenantSlug, setNewTenantSlug] = useState('')
@@ -75,8 +75,12 @@ export function TenantSwitcher() {
       setIsOpen(false)
       setNewTenantName('')
       setNewTenantSlug('')
-    } catch (e) {
-      console.error('Failed to create tenant', e)
+    } catch (apiError) {
+      console.error(apiError)
+
+      alert((apiError as any).message || 'Failed to create tenant')
+    } finally {
+      // Any cleanup or final actions can go here
     }
   }
 

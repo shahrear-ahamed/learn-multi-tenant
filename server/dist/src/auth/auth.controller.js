@@ -18,7 +18,7 @@ let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
-    async login(req) {
+    login(req) {
         return this.authService.login(req.user);
     }
     async register(user) {
@@ -28,10 +28,11 @@ let AuthController = class AuthController {
 __decorate([
     UseGuards(AuthGuard('local')),
     Post('login'),
+    Post('login'),
     __param(0, Request()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", void 0)
 ], AuthController.prototype, "login", null);
 __decorate([
     Post('register'),

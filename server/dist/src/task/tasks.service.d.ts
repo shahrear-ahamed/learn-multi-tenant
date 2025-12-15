@@ -8,5 +8,12 @@ export declare class TasksService {
         description?: string;
     }): Promise<Task>;
     findAll(tenantId: string): Promise<Task[]>;
+    findOne(tenantId: string, taskId: string): Promise<Task | null>;
+    update(tenantId: string, taskId: string, data: {
+        title?: string;
+        description?: string;
+        status?: string;
+    }): Promise<Task>;
+    delete(tenantId: string, taskId: string): Promise<Task>;
     updateStatus(tenantId: string, taskId: string, status: string): Promise<Task>;
 }

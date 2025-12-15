@@ -16,9 +16,17 @@ export function LayoutWrapper() {
           </Link>
           <Link
             to="/tasks"
-            className="block p-2 rounded hover:bg-gray-100 [&.active]:bg-gray-100 font-medium"
+            className="block px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100"
+            activeProps={{ className: 'bg-gray-100' }}
           >
             Tasks
+          </Link>
+          <Link
+            to="/settings"
+            className="block px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100"
+            activeProps={{ className: 'bg-gray-100' }}
+          >
+            Settings
           </Link>
         </nav>
       </div>

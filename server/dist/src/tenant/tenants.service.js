@@ -48,6 +48,39 @@ let TenantsService = class TenantsService {
             },
         });
     }
+    async inviteUser(tenantId, email) {
+        const user = await this.prisma.user.findUnique({
+            where: { email },
+        });
+        if (!user) {
+            throw new Error('User not found');
+        }
+        const existingMember = await this.prisma.userTenant.findUnique({
+            where: {
+                userId_tenantId: {
+                    userId: user.id,
+                    tenantId,
+                },
+            },
+        });
+        if (existingMember) {
+            throw new Error('User is already a member of this tenant');
+        }
+        return this.addUserToTenant(tenantId, user.id);
+    }
+    async getMembers(tenantId) {
+        return this.prisma.userTenant.findMany({
+            where: { tenantId },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                    },
+                },
+            },
+        });
+    }
 };
 TenantsService = __decorate([
     Injectable(),

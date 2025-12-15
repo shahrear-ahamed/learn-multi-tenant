@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LayoutTasksRouteImport } from './routes/_layout.tasks'
+import { Route as LayoutSettingsRouteImport } from './routes/_layout.settings'
 import { Route as LayoutDashboardRouteImport } from './routes/_layout.dashboard'
 
 const RegisterRoute = RegisterRouteImport.update({
@@ -40,6 +41,11 @@ const LayoutTasksRoute = LayoutTasksRouteImport.update({
   path: '/tasks',
   getParentRoute: () => LayoutRoute,
 } as any)
+const LayoutSettingsRoute = LayoutSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => LayoutRoute,
+} as any)
 const LayoutDashboardRoute = LayoutDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/dashboard': typeof LayoutDashboardRoute
+  '/settings': typeof LayoutSettingsRoute
   '/tasks': typeof LayoutTasksRoute
 }
 export interface FileRoutesByTo {
@@ -58,6 +65,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/dashboard': typeof LayoutDashboardRoute
+  '/settings': typeof LayoutSettingsRoute
   '/tasks': typeof LayoutTasksRoute
 }
 export interface FileRoutesById {
@@ -67,13 +75,20 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/_layout/dashboard': typeof LayoutDashboardRoute
+  '/_layout/settings': typeof LayoutSettingsRoute
   '/_layout/tasks': typeof LayoutTasksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register' | '/dashboard' | '/tasks'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/dashboard'
+    | '/settings'
+    | '/tasks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/dashboard' | '/tasks'
+  to: '/' | '/login' | '/register' | '/dashboard' | '/settings' | '/tasks'
   id:
     | '__root__'
     | '/'
@@ -81,6 +96,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/_layout/dashboard'
+    | '/_layout/settings'
     | '/_layout/tasks'
   fileRoutesById: FileRoutesById
 }
@@ -128,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutTasksRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/settings': {
+      id: '/_layout/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof LayoutSettingsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
     '/_layout/dashboard': {
       id: '/_layout/dashboard'
       path: '/dashboard'
@@ -140,11 +163,13 @@ declare module '@tanstack/react-router' {
 
 interface LayoutRouteChildren {
   LayoutDashboardRoute: typeof LayoutDashboardRoute
+  LayoutSettingsRoute: typeof LayoutSettingsRoute
   LayoutTasksRoute: typeof LayoutTasksRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutDashboardRoute: LayoutDashboardRoute,
+  LayoutSettingsRoute: LayoutSettingsRoute,
   LayoutTasksRoute: LayoutTasksRoute,
 }
 

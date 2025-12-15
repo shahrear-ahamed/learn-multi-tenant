@@ -25,22 +25,44 @@ export class TasksService {
     });
   }
 
-  async updateStatus(
-    tenantId: string,
-    taskId: string,
-    status: string,
-  ): Promise<Task> {
-    // Verify task belongs to tenant
-    const task = await this.prisma.task.findFirst({
+  async findOne(tenantId: string, taskId: string): Promise<Task | null> {
+    return this.prisma.task.findFirst({
       where: { id: taskId, tenantId },
     });
+  }
+
+  async update(
+    tenantId: string,
+    taskId: string,
+    data: { title?: string; description?: string; status?: string },
+  ): Promise<Task> {
+    const task = await this.findOne(tenantId, taskId);
     if (!task) {
       throw new Error('Task not found');
     }
 
     return this.prisma.task.update({
       where: { id: taskId },
-      data: { status },
+      data,
     });
+  }
+
+  async delete(tenantId: string, taskId: string): Promise<Task> {
+    const task = await this.findOne(tenantId, taskId);
+    if (!task) {
+      throw new Error('Task not found');
+    }
+
+    return this.prisma.task.delete({
+      where: { id: taskId },
+    });
+  }
+
+  async updateStatus(
+    tenantId: string,
+    taskId: string,
+    status: string,
+  ): Promise<Task> {
+    return this.update(tenantId, taskId, { status });
   }
 }

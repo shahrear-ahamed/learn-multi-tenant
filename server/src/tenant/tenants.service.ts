@@ -53,4 +53,44 @@ export class TenantsService {
       },
     });
   }
+  async inviteUser(tenantId: string, email: string) {
+    // 1. Find user by email
+    const user = await this.prisma.user.findUnique({
+      where: { email },
+    });
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // 2. Check if user is already a member
+    const existingMember = await this.prisma.userTenant.findUnique({
+      where: {
+        userId_tenantId: {
+          userId: user.id,
+          tenantId,
+        },
+      },
+    });
+
+    if (existingMember) {
+      throw new Error('User is already a member of this tenant');
+    }
+
+    // 3. Add user to tenant using existing method
+    return this.addUserToTenant(tenantId, user.id);
+  }
+
+  async getMembers(tenantId: string) {
+    return this.prisma.userTenant.findMany({
+      where: { tenantId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+          },
+        },
+      },
+    });
+  }
 }

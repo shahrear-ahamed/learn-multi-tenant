@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Body, Controller, Get, Post, Request, UseGuards, } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post, Request, UseGuards, } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { TenantsService } from './tenants.service.js';
 let TenantsController = class TenantsController {
@@ -23,6 +23,17 @@ let TenantsController = class TenantsController {
     }
     async findAll(req) {
         return this.tenantsService.findAllForUser(req.user.userId);
+    }
+    async inviteUser(id, email) {
+        try {
+            return await this.tenantsService.inviteUser(id, email);
+        }
+        catch (e) {
+            throw new NotFoundException(e instanceof Error ? e.message : 'Failed to invite user');
+        }
+    }
+    async getMembers(id) {
+        return this.tenantsService.getMembers(id);
     }
 };
 __decorate([
@@ -42,6 +53,23 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], TenantsController.prototype, "findAll", null);
+__decorate([
+    Post(':id/invite'),
+    UseGuards(AuthGuard('jwt')),
+    __param(0, Param('id')),
+    __param(1, Body('email')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], TenantsController.prototype, "inviteUser", null);
+__decorate([
+    Get(':id/members'),
+    UseGuards(AuthGuard('jwt')),
+    __param(0, Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], TenantsController.prototype, "getMembers", null);
 TenantsController = __decorate([
     Controller('tenants'),
     __metadata("design:paramtypes", [TenantsService])

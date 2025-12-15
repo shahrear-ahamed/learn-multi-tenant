@@ -19,4 +19,21 @@ export declare class TenantsController {
         updatedAt: Date;
         slug: string;
     }[]>;
+    inviteUser(id: string, email: string): Promise<{
+        id: string;
+        role: string;
+        tenantId: string;
+        userId: string;
+    }>;
+    getMembers(id: string): Promise<({
+        user: {
+            id: string;
+            email: string;
+        };
+    } & {
+        id: string;
+        role: string;
+        tenantId: string;
+        userId: string;
+    })[]>;
 }

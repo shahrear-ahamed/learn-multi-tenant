@@ -28,17 +28,32 @@ let TasksService = class TasksService {
             orderBy: { createdAt: 'desc' },
         });
     }
-    async updateStatus(tenantId, taskId, status) {
-        const task = await this.prisma.task.findFirst({
+    async findOne(tenantId, taskId) {
+        return this.prisma.task.findFirst({
             where: { id: taskId, tenantId },
         });
+    }
+    async update(tenantId, taskId, data) {
+        const task = await this.findOne(tenantId, taskId);
         if (!task) {
             throw new Error('Task not found');
         }
         return this.prisma.task.update({
             where: { id: taskId },
-            data: { status },
+            data,
         });
+    }
+    async delete(tenantId, taskId) {
+        const task = await this.findOne(tenantId, taskId);
+        if (!task) {
+            throw new Error('Task not found');
+        }
+        return this.prisma.task.delete({
+            where: { id: taskId },
+        });
+    }
+    async updateStatus(tenantId, taskId, status) {
+        return this.update(tenantId, taskId, { status });
     }
 };
 TasksService = __decorate([
