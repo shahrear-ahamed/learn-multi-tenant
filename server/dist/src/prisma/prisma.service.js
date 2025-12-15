@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Injectable } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
+import { Pool } from 'pg';
 let PrismaService = class PrismaService extends PrismaClient {
     constructor() {
-        const adapter = new PrismaPg({
+        const pool = new Pool({
             connectionString: process.env.DATABASE_URL,
         });
+        const adapter = new PrismaPg(pool);
         super({ adapter });
     }
     async onModuleInit() {

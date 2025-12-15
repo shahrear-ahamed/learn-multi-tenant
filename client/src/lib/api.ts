@@ -13,7 +13,7 @@ export async function api(url: string, options: RequestInit = {}) {
   return response.json()
 }
 
-const API_URL = 'http://localhost:5000'
+const API_URL = 'http://localhost:5001'
 
 function getAuthHeaders() {
   return { Authorization: `Bearer ${localStorage.getItem('token')}` }
