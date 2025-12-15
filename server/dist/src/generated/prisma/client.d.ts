@@ -6,3 +6,8 @@ export * from "./enums.js";
 export declare const PrismaClient: $Class.PrismaClientConstructor;
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>;
 export { Prisma };
+export type User = Prisma.UserModel;
+export type Tenant = Prisma.TenantModel;
+export type UserTenant = Prisma.UserTenantModel;
+export type Task = Prisma.TaskModel;
+export type Comment = Prisma.CommentModel;

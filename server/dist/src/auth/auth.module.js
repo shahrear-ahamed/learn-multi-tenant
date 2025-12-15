@@ -5,10 +5,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { UsersModule } from '../users/users.module.js';
+import { AuthController } from './auth.controller.js';
+import { AuthService } from './auth.service.js';
+import { JwtStrategy } from './jwt.strategy.js';
+import { LocalStrategy } from './local.strategy.js';
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
-    Module({})
+    Module({
+        imports: [
+            UsersModule,
+            PassportModule,
+            JwtModule.register({
+                secret: process.env.JWT_SECRET || 'secretKey',
+                signOptions: { expiresIn: '60m' },
+            }),
+        ],
+        providers: [AuthService, LocalStrategy, JwtStrategy],
+        controllers: [AuthController],
+        exports: [AuthService],
+    })
 ], AuthModule);
 export { AuthModule };
 //# sourceMappingURL=auth.module.js.map

@@ -1221,72 +1221,65 @@ const assets = {
   "/favicon.ico": {
     "type": "image/vnd.microsoft.icon",
     "etag": '"f1e-ESBTjHetHyiokkO0tT/irBbMO8Y"',
-    "mtime": "2025-12-12T16:41:15.740Z",
+    "mtime": "2025-12-15T14:24:22.801Z",
     "size": 3870,
     "path": "../public/favicon.ico"
   },
   "/logo192.png": {
     "type": "image/png",
     "etag": '"14e3-f08taHgqf6/O2oRVTsq5tImHdQA"',
-    "mtime": "2025-12-12T16:41:15.740Z",
+    "mtime": "2025-12-15T14:24:22.801Z",
     "size": 5347,
     "path": "../public/logo192.png"
   },
   "/logo512.png": {
     "type": "image/png",
     "etag": '"25c0-RpFfnQJpTtSb/HqVNJR2hBA9w/4"',
-    "mtime": "2025-12-12T16:41:15.741Z",
+    "mtime": "2025-12-15T14:24:22.801Z",
     "size": 9664,
     "path": "../public/logo512.png"
   },
   "/manifest.json": {
     "type": "application/json",
     "etag": '"1f2-Oqn/x1R1hBTtEjA8nFhpBeFJJNg"',
-    "mtime": "2025-12-12T16:41:15.741Z",
+    "mtime": "2025-12-15T14:24:22.802Z",
     "size": 498,
     "path": "../public/manifest.json"
   },
   "/robots.txt": {
     "type": "text/plain; charset=utf-8",
     "etag": '"43-BEzmj4PuhUNHX+oW9uOnPSihxtU"',
-    "mtime": "2025-12-12T16:41:15.741Z",
+    "mtime": "2025-12-15T14:24:22.802Z",
     "size": 67,
     "path": "../public/robots.txt"
   },
   "/tanstack-circle-logo.png": {
     "type": "image/png",
     "etag": '"40cab-HZ1KcYPs7tRjLe4Sd4g6CwKW+W8"',
-    "mtime": "2025-12-12T16:41:15.742Z",
+    "mtime": "2025-12-15T14:24:22.803Z",
     "size": 265387,
     "path": "../public/tanstack-circle-logo.png"
   },
   "/tanstack-word-logo-white.svg": {
     "type": "image/svg+xml",
     "etag": '"3a9a-9TQFm/pN8AZe1ZK0G1KyCEojnYg"',
-    "mtime": "2025-12-12T16:41:15.743Z",
+    "mtime": "2025-12-15T14:24:22.803Z",
     "size": 15002,
     "path": "../public/tanstack-word-logo-white.svg"
   },
-  "/assets/index-C1VBLnT5.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": '"2a01-aTkr1YJb1vFyqjeQ18pyxHN0Ipk"',
-    "mtime": "2025-12-12T16:41:15.839Z",
-    "size": 10753,
-    "path": "../public/assets/index-C1VBLnT5.css"
-  },
-  "/assets/index-D-639tnP.js": {
+  "/assets/index-1vJXykoh.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": '"41f26-83fer4ciGio+n+Wg0IsP+UHsq20"',
-    "mtime": "2025-12-12T16:41:15.839Z",
-    "size": 270118,
-    "path": "../public/assets/index-D-639tnP.js"
+    "etag": '"4ab1c-Nv2NX6biGvBVha4p94nQZpY65qY"',
+    "mtime": "2025-12-15T14:24:22.920Z",
+    "size": 305948,
+    "path": "../public/assets/index-1vJXykoh.js"
   },
-  "/assets/logo-CuCXCxLu.svg": {
-    "type": "image/svg+xml",
-    "etag": '"4b5a-2dXkP7CHmSIYgvBeQcud/1ijbL4"',
-    "mtime": "2025-12-12T16:41:15.839Z",
-    "size": 19290,
-    "path": "../public/assets/logo-CuCXCxLu.svg"
+  "/assets/index-D8BBRgEA.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": '"8573-+jWR4NALNJWpJxDG4UgQDwAZWPQ"',
+    "mtime": "2025-12-15T14:24:22.920Z",
+    "size": 34163,
+    "path": "../public/assets/index-D8BBRgEA.css"
   }
 };
 function readAsset(id) {
@@ -1529,7 +1522,7 @@ serve({
 });
 trapUnhandledErrors();
 const nodeServer = {};
-const rendererTemplate$1 = () => new HTTPResponse('<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <link rel="icon" href="/favicon.ico" />\n    <meta name="theme-color" content="#000000" />\n    <meta\n      name="description"\n      content="Web site created using create-tsrouter-app"\n    />\n    <link rel="apple-touch-icon" href="/logo192.png" />\n    <link rel="manifest" href="/manifest.json" />\n    <title>Create TanStack App - client</title>\n    <script type="module" crossorigin src="/assets/index-D-639tnP.js"><\/script>\n    <link rel="stylesheet" crossorigin href="/assets/index-C1VBLnT5.css">\n  </head>\n  <body>\n    <div id="app"></div>\n  </body>\n</html>\n', { headers: { "content-type": "text/html; charset=utf-8" } });
+const rendererTemplate$1 = () => new HTTPResponse('<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <link rel="icon" href="/favicon.ico" />\n    <meta name="theme-color" content="#000000" />\n    <meta\n      name="description"\n      content="Web site created using create-tsrouter-app"\n    />\n    <link rel="apple-touch-icon" href="/logo192.png" />\n    <link rel="manifest" href="/manifest.json" />\n    <title>Create TanStack App - client</title>\n    <script type="module" crossorigin src="/assets/index-1vJXykoh.js"><\/script>\n    <link rel="stylesheet" crossorigin href="/assets/index-D8BBRgEA.css">\n  </head>\n  <body>\n    <div id="app"></div>\n  </body>\n</html>\n', { headers: { "content-type": "text/html; charset=utf-8" } });
 function renderIndexHTML(event) {
   return rendererTemplate$1(event.req);
 }

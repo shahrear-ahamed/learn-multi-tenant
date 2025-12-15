@@ -17,6 +17,12 @@ let PrismaService = class PrismaService extends PrismaClient {
         });
         super({ adapter });
     }
+    async onModuleInit() {
+        await this.$connect();
+    }
+    async onModuleDestroy() {
+        await this.$disconnect();
+    }
 };
 PrismaService = __decorate([
     Injectable(),
