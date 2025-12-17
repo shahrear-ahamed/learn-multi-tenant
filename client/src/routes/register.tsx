@@ -1,12 +1,23 @@
-import { Link, createFileRoute, useRouter } from '@tanstack/react-router'
-import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { authApi } from '@/lib/api'
+import { isAuthenticated } from '@/lib/auth'
+import {
+  Link,
+  createFileRoute,
+  redirect,
+  useRouter,
+} from '@tanstack/react-router'
+import { useState } from 'react'
 
 export const Route = createFileRoute('/register')({
+  beforeLoad: () => {
+    if (isAuthenticated()) {
+      throw redirect({ to: '/dashboard' })
+    }
+  },
   component: Register,
 })
 
@@ -25,7 +36,7 @@ function Register() {
       await router.navigate({ to: '/login' })
     } catch (err) {
       console.error(err)
-       
+
       setError((err as any).message || 'Registration failed')
     }
   }

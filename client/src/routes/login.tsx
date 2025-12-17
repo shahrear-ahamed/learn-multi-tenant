@@ -1,12 +1,23 @@
-import { Link, createFileRoute, useRouter } from '@tanstack/react-router'
-import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { authApi } from '@/lib/api'
+import { isAuthenticated } from '@/lib/auth'
+import {
+  Link,
+  createFileRoute,
+  redirect,
+  useRouter,
+} from '@tanstack/react-router'
+import { useState } from 'react'
 
 export const Route = createFileRoute('/login')({
+  beforeLoad: () => {
+    if (isAuthenticated()) {
+      throw redirect({ to: '/dashboard' })
+    }
+  },
   component: Login,
 })
 
@@ -20,8 +31,7 @@ function Login() {
     e.preventDefault()
     setError('')
     try {
-       
-      const data = (await authApi.login({ email, password }))
+      const data = await authApi.login({ email, password })
       localStorage.setItem('token', data.access_token)
       await router.navigate({ to: '/dashboard' })
     } catch (err) {

@@ -18,4 +18,11 @@ export class AuthController {
   async register(@Body() user: any) {
     return this.authService.register(user);
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('me')
+  async getProfile(@Request() req: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    return await this.authService.getProfile(req.user.userId);
+  }
 }

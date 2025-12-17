@@ -23,6 +23,24 @@ let UsersService = class UsersService {
             throw error;
         }
     }
+    async findById(id) {
+        try {
+            return this.prisma.user.findUnique({
+                where: { id },
+                include: {
+                    tenants: {
+                        include: {
+                            tenant: true,
+                        },
+                    },
+                },
+            });
+        }
+        catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
     async createUser(data) {
         try {
             return this.prisma.user.create({

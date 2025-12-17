@@ -32,6 +32,11 @@ export const authApi = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     }),
+  me: () =>
+    api(`${API_URL}/auth/me`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+    }),
 }
 
 export const taskApi = {

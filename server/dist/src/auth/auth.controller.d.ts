@@ -12,4 +12,5 @@ export declare class AuthController {
         createdAt: Date;
         updatedAt: Date;
     }>;
+    getProfile(req: any): Promise<any>;
 }

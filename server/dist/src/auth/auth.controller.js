@@ -24,6 +24,9 @@ let AuthController = class AuthController {
     async register(user) {
         return this.authService.register(user);
     }
+    async getProfile(req) {
+        return await this.authService.getProfile(req.user.userId);
+    }
 };
 __decorate([
     UseGuards(AuthGuard('local')),
@@ -41,6 +44,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "register", null);
+__decorate([
+    UseGuards(AuthGuard('jwt')),
+    Post('me'),
+    __param(0, Request()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "getProfile", null);
 AuthController = __decorate([
     Controller('auth'),
     __metadata("design:paramtypes", [AuthService])

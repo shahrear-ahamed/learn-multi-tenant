@@ -15,4 +15,5 @@ export declare class AuthService {
         createdAt: Date;
         updatedAt: Date;
     }>;
+    getProfile(userId: string): Promise<any>;
 }

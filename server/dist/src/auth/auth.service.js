@@ -39,6 +39,22 @@ let AuthService = class AuthService {
             password: hashedPassword,
         });
     }
+    async getProfile(userId) {
+        const user = await this.usersService.findById(userId);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        const { password, ...userWithoutPassword } = user;
+        return {
+            ...userWithoutPassword,
+            tenants: user.tenants.map((ut) => ({
+                id: ut.tenant.id,
+                name: ut.tenant.name,
+                slug: ut.tenant.slug,
+                role: ut.role,
+            })),
+        };
+    }
 };
 AuthService = __decorate([
     Injectable(),
