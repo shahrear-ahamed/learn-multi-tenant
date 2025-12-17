@@ -15,14 +15,24 @@ let UsersService = class UsersService {
         this.prisma = prisma;
     }
     async findOne(email) {
-        return this.prisma.user.findUnique({
-            where: { email },
-        });
+        try {
+            return this.prisma.user.findUnique({ where: { email } });
+        }
+        catch (error) {
+            console.log(error);
+            throw error;
+        }
     }
     async createUser(data) {
-        return this.prisma.user.create({
-            data,
-        });
+        try {
+            return this.prisma.user.create({
+                data,
+            });
+        }
+        catch (error) {
+            console.log(error);
+            throw error;
+        }
     }
 };
 UsersService = __decorate([
