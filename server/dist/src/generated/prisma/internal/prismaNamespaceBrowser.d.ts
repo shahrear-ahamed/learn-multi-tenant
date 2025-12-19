@@ -16,6 +16,8 @@ export declare const ModelName: {
     readonly UserTenant: "UserTenant";
     readonly Task: "Task";
     readonly Comment: "Comment";
+    readonly Test: "Test";
+    readonly Blog: "Blog";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -65,6 +67,21 @@ export declare const CommentScalarFieldEnum: {
     readonly createdAt: "createdAt";
 };
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum];
+export declare const TestScalarFieldEnum: {
+    readonly id: "id";
+    readonly title: "title";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type TestScalarFieldEnum = (typeof TestScalarFieldEnum)[keyof typeof TestScalarFieldEnum];
+export declare const BlogScalarFieldEnum: {
+    readonly id: "id";
+    readonly title: "title";
+    readonly content: "content";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

@@ -88,16 +88,16 @@ export type UserTenantWhereInput = {
     userId?: Prisma.StringFilter<"UserTenant"> | string;
     tenantId?: Prisma.StringFilter<"UserTenant"> | string;
     role?: Prisma.StringFilter<"UserTenant"> | string;
-    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 };
 export type UserTenantOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     userId?: Prisma.SortOrder;
     tenantId?: Prisma.SortOrder;
     role?: Prisma.SortOrder;
-    user?: Prisma.UserOrderByWithRelationInput;
     tenant?: Prisma.TenantOrderByWithRelationInput;
+    user?: Prisma.UserOrderByWithRelationInput;
 };
 export type UserTenantWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -108,8 +108,8 @@ export type UserTenantWhereUniqueInput = Prisma.AtLeast<{
     userId?: Prisma.StringFilter<"UserTenant"> | string;
     tenantId?: Prisma.StringFilter<"UserTenant"> | string;
     role?: Prisma.StringFilter<"UserTenant"> | string;
-    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 }, "id" | "userId_tenantId">;
 export type UserTenantOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -132,8 +132,8 @@ export type UserTenantScalarWhereWithAggregatesInput = {
 export type UserTenantCreateInput = {
     id?: string;
     role?: string;
-    user: Prisma.UserCreateNestedOneWithoutTenantsInput;
     tenant: Prisma.TenantCreateNestedOneWithoutUsersInput;
+    user: Prisma.UserCreateNestedOneWithoutTenantsInput;
 };
 export type UserTenantUncheckedCreateInput = {
     id?: string;
@@ -144,8 +144,8 @@ export type UserTenantUncheckedCreateInput = {
 export type UserTenantUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     role?: Prisma.StringFieldUpdateOperationsInput | string;
-    user?: Prisma.UserUpdateOneRequiredWithoutTenantsNestedInput;
     tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput;
+    user?: Prisma.UserUpdateOneRequiredWithoutTenantsNestedInput;
 };
 export type UserTenantUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -391,24 +391,24 @@ export type UserTenantSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
     userId?: boolean;
     tenantId?: boolean;
     role?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["userTenant"]>;
 export type UserTenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     userId?: boolean;
     tenantId?: boolean;
     role?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["userTenant"]>;
 export type UserTenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     userId?: boolean;
     tenantId?: boolean;
     role?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["userTenant"]>;
 export type UserTenantSelectScalar = {
     id?: boolean;
@@ -418,22 +418,22 @@ export type UserTenantSelectScalar = {
 };
 export type UserTenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "tenantId" | "role", ExtArgs["result"]["userTenant"]>;
 export type UserTenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type UserTenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type UserTenantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type $UserTenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "UserTenant";
     objects: {
-        user: Prisma.$UserPayload<ExtArgs>;
         tenant: Prisma.$TenantPayload<ExtArgs>;
+        user: Prisma.$UserPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -492,8 +492,8 @@ export interface UserTenantDelegate<ExtArgs extends runtime.Types.Extensions.Int
 }
 export interface Prisma__UserTenantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
     finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;

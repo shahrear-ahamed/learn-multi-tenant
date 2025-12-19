@@ -11,28 +11,28 @@ model User {
   id        String       @id @default(uuid())
   email     String       @unique
   password  String
-  tenants   UserTenant[]
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
+  tenants   UserTenant[]
 }
 
 model Tenant {
   id        String       @id @default(uuid())
   name      String
   slug      String       @unique
-  users     UserTenant[]
-  tasks     Task[]
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
+  tasks     Task[]
+  users     UserTenant[]
 }
 
 model UserTenant {
   id       String @id @default(uuid())
   userId   String
   tenantId String
-  role     String @default("MEMBER") // OWNER, ADMIN, MEMBER
-  user     User   @relation(fields: [userId], references: [id])
+  role     String @default("MEMBER")
   tenant   Tenant @relation(fields: [tenantId], references: [id])
+  user     User   @relation(fields: [userId], references: [id])
 
   @@unique([userId, tenantId])
 }
@@ -43,16 +43,31 @@ model Task {
   description String?
   status      String    @default("TODO")
   tenantId    String
-  tenant      Tenant    @relation(fields: [tenantId], references: [id])
-  comments    Comment[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  comments    Comment[]
+  tenant      Tenant    @relation(fields: [tenantId], references: [id])
 }
 
 model Comment {
   id        String   @id @default(uuid())
   content   String
   taskId    String
-  task      Task     @relation(fields: [taskId], references: [id])
   createdAt DateTime @default(now())
+  task      Task     @relation(fields: [taskId], references: [id])
+}
+
+model Test {
+  id        String   @id @default(uuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Blog {
+  id        String   @id @default(uuid())
+  title     String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

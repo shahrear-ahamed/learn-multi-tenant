@@ -8,6 +8,7 @@ export class UsersService {
 
   async findOne(email: string): Promise<User | null> {
     try {
+      // this.prisma.blog.create({ data: { title: 'Hello', content: 'Hello' } });
       return this.prisma.user.findUnique({ where: { email } });
     } catch (error) {
       console.log(error);

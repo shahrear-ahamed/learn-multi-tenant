@@ -11,3 +11,5 @@ export type Tenant = Prisma.TenantModel;
 export type UserTenant = Prisma.UserTenantModel;
 export type Task = Prisma.TaskModel;
 export type Comment = Prisma.CommentModel;
+export type Test = Prisma.TestModel;
+export type Blog = Prisma.BlogModel;

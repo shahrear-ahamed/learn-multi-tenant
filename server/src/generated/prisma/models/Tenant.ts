@@ -182,8 +182,8 @@ export type TenantWhereInput = {
   slug?: Prisma.StringFilter<"Tenant"> | string
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
-  users?: Prisma.UserTenantListRelationFilter
   tasks?: Prisma.TaskListRelationFilter
+  users?: Prisma.UserTenantListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -192,8 +192,8 @@ export type TenantOrderByWithRelationInput = {
   slug?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  users?: Prisma.UserTenantOrderByRelationAggregateInput
   tasks?: Prisma.TaskOrderByRelationAggregateInput
+  users?: Prisma.UserTenantOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -205,8 +205,8 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Tenant"> | string
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
-  users?: Prisma.UserTenantListRelationFilter
   tasks?: Prisma.TaskListRelationFilter
+  users?: Prisma.UserTenantListRelationFilter
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
@@ -237,8 +237,8 @@ export type TenantCreateInput = {
   slug: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserTenantCreateNestedManyWithoutTenantInput
   tasks?: Prisma.TaskCreateNestedManyWithoutTenantInput
+  users?: Prisma.UserTenantCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -247,8 +247,8 @@ export type TenantUncheckedCreateInput = {
   slug: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserTenantUncheckedCreateNestedManyWithoutTenantInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutTenantInput
+  users?: Prisma.UserTenantUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -257,8 +257,8 @@ export type TenantUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserTenantUpdateManyWithoutTenantNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutTenantNestedInput
+  users?: Prisma.UserTenantUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -267,8 +267,8 @@ export type TenantUncheckedUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserTenantUncheckedUpdateManyWithoutTenantNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutTenantNestedInput
+  users?: Prisma.UserTenantUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -462,13 +462,13 @@ export type TenantUncheckedUpdateWithoutTasksInput = {
  */
 
 export type TenantCountOutputType = {
-  users: number
   tasks: number
+  users: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  users?: boolean | TenantCountOutputTypeCountUsersArgs
   tasks?: boolean | TenantCountOutputTypeCountTasksArgs
+  users?: boolean | TenantCountOutputTypeCountUsersArgs
 }
 
 /**
@@ -484,15 +484,15 @@ export type TenantCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * TenantCountOutputType without action
  */
-export type TenantCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserTenantWhereInput
+export type TenantCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskWhereInput
 }
 
 /**
  * TenantCountOutputType without action
  */
-export type TenantCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TaskWhereInput
+export type TenantCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserTenantWhereInput
 }
 
 
@@ -502,8 +502,8 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   slug?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   tasks?: boolean | Prisma.Tenant$tasksArgs<ExtArgs>
+  users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -533,8 +533,8 @@ export type TenantSelectScalar = {
 
 export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   tasks?: boolean | Prisma.Tenant$tasksArgs<ExtArgs>
+  users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -543,8 +543,8 @@ export type TenantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tenant"
   objects: {
-    users: Prisma.$UserTenantPayload<ExtArgs>[]
     tasks: Prisma.$TaskPayload<ExtArgs>[]
+    users: Prisma.$UserTenantPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -946,8 +946,8 @@ readonly fields: TenantFieldRefs;
  */
 export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  users<T extends Prisma.Tenant$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTenantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tasks<T extends Prisma.Tenant$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  users<T extends Prisma.Tenant$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTenantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1370,30 +1370,6 @@ export type TenantDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Tenant.users
- */
-export type Tenant$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserTenant
-   */
-  select?: Prisma.UserTenantSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserTenant
-   */
-  omit?: Prisma.UserTenantOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserTenantInclude<ExtArgs> | null
-  where?: Prisma.UserTenantWhereInput
-  orderBy?: Prisma.UserTenantOrderByWithRelationInput | Prisma.UserTenantOrderByWithRelationInput[]
-  cursor?: Prisma.UserTenantWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserTenantScalarFieldEnum | Prisma.UserTenantScalarFieldEnum[]
-}
-
-/**
  * Tenant.tasks
  */
 export type Tenant$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1415,6 +1391,30 @@ export type Tenant$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.TaskScalarFieldEnum | Prisma.TaskScalarFieldEnum[]
+}
+
+/**
+ * Tenant.users
+ */
+export type Tenant$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserTenant
+   */
+  select?: Prisma.UserTenantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserTenant
+   */
+  omit?: Prisma.UserTenantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserTenantInclude<ExtArgs> | null
+  where?: Prisma.UserTenantWhereInput
+  orderBy?: Prisma.UserTenantOrderByWithRelationInput | Prisma.UserTenantOrderByWithRelationInput[]
+  cursor?: Prisma.UserTenantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserTenantScalarFieldEnum | Prisma.UserTenantScalarFieldEnum[]
 }
 
 /**

@@ -8,9 +8,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  @Post('login')
   login(@Request() req: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     return this.authService.login(req.user);
   }
 
@@ -22,7 +20,6 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt'))
   @Post('me')
   async getProfile(@Request() req: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     return await this.authService.getProfile(req.user.userId);
   }
 }

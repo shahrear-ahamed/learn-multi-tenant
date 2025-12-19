@@ -28,7 +28,9 @@ export const ModelName = {
     Tenant: 'Tenant',
     UserTenant: 'UserTenant',
     Task: 'Task',
-    Comment: 'Comment'
+    Comment: 'Comment',
+    Test: 'Test',
+    Blog: 'Blog'
 };
 export const TransactionIsolationLevel = runtime.makeStrictEnum({
     ReadUncommitted: 'ReadUncommitted',
@@ -70,6 +72,19 @@ export const CommentScalarFieldEnum = {
     content: 'content',
     taskId: 'taskId',
     createdAt: 'createdAt'
+};
+export const TestScalarFieldEnum = {
+    id: 'id',
+    title: 'title',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const BlogScalarFieldEnum = {
+    id: 'id',
+    title: 'title',
+    content: 'content',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
 };
 export const SortOrder = {
     asc: 'asc',

@@ -64,3 +64,13 @@ export type Task = Prisma.TaskModel
  * 
  */
 export type Comment = Prisma.CommentModel
+/**
+ * Model Test
+ * 
+ */
+export type Test = Prisma.TestModel
+/**
+ * Model Blog
+ * 
+ */
+export type Blog = Prisma.BlogModel
